@@ -24,8 +24,13 @@ body {
   margin-right: 5px;
   box-shadow: 0px 0px 10px #2d3436;;
 }
+
 .chooseLetter {
   font-weight: bold;
   text-transform: uppercase;
   color: #fdcb6e;
+}
+
+.chooseLetter input {
+  text-align: center;
 }
