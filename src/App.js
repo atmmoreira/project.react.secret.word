@@ -31,9 +31,16 @@ function App() {
 
         <section>
           <div className='d-flex justify-content-center flex-column'>
-            <span className='chooseLetter mb-4'>
-              Sua Letra: <input type='text' name='' id='' min={1} size='2' />
-            </span>
+            <div className='chooseLetter mb-4 d-flex justify-content-center align-items-center'>
+              <span className='mx-1'>Sua Letra:</span>
+              <input type='text' name='' id='' min={1} size='2' />
+              <button
+                type='submit'
+                className='btn btn-outline-light text-uppercase'
+              >
+                Jogar
+              </button>
+            </div>
             <span>Você já usou as letras: q, b, c.</span>
           </div>
         </section>
