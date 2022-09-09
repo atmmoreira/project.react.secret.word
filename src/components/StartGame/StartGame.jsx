@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
 function StartGame({
   verifyLetters,
@@ -10,6 +10,17 @@ function StartGame({
   guesses,
   score,
 }) {
+  const [letter, setLetter] = useState('');
+  const letterInputRef = useRef(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    verifyLetters(letter);
+    setLetter('');
+    letterInputRef.current.focus();
+  };
+
   return (
     <>
       <div className='row'>
@@ -44,21 +55,32 @@ function StartGame({
 
       <section>
         <div className='d-flex justify-content-center flex-column'>
-          <div className='chooseLetter mb-4 d-flex justify-content-center align-items-center'>
-            <span className='mx-1'>Sua Letra:</span>
-            <input type='text' name='' id='' maxLength={1} size='2' />
-            <button
-              type='submit'
-              className='btn btn-outline-light text-uppercase'
-              onClick={verifyLetters}
-            >
-              Jogar
-            </button>
-          </div>
-          <span>
-            Você já usou as letras:
+          <form onSubmit={handleSubmit}>
+            <div className='chooseLetter mb-4 d-flex justify-content-center align-items-center'>
+              <span className='mx-1'>Sua Letra:</span>
+              <input
+                type='text'
+                name=''
+                id=''
+                maxLength={1}
+                size='2'
+                required
+                onChange={(e) => setLetter(e.target.value)}
+                value={letter}
+                ref={letterInputRef}
+              />
+              <button
+                type='submit'
+                className='btn btn-outline-light text-uppercase'
+              >
+                Jogar
+              </button>
+            </div>
+          </form>
+          <div>
+            <span className='mx-1'>Você já usou as letras:</span>
             {wrongLetters.map((letter) => `${letter}, `)}
-          </span>
+          </div>
         </div>
       </section>
     </>
